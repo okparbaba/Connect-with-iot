@@ -12,24 +12,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import retrofit2.Call
 import retrofit2.Callback
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     val ha = Handler()
     lateinit var adapter: DataAdapter
     lateinit var list: ArrayList<Response>
+    lateinit var manager: LinearLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         list = ArrayList()
-
+        manager = LinearLayoutManager(this)
         adapter = DataAdapter(list) { vh, position ->
             list.remove(list[position])
             adapter.notifyDataSetChanged()
         }
 
-        rv.layoutManager = LinearLayoutManager(this@MainActivity)
-        rv.adapter = adapter
+        rv?.layoutManager = manager
+        rv?.adapter = adapter
         ha.postDelayed(object:Runnable{
             override fun run() {
                 getData()
@@ -38,24 +40,23 @@ class MainActivity : AppCompatActivity() {
 
         },10000)
 
-        ivReload.setOnClickListener{getData()}
+        ivReload?.setOnClickListener{getData()}
         getData()
     }
 
     private fun getData() {
-        list.clear()
-        progressBar.visibility = VISIBLE
-        tvNoInternet.visibility = GONE
-        ivReload.visibility = GONE
+        progressBar?.visibility = VISIBLE
+        tvNoInternet?.visibility = GONE
+        ivReload?.visibility = GONE
         doAsync {
             retrofitCli<Service>()
                 .getData()
                 .enqueue(object : Callback<List<Response>> {
                     override fun onFailure(call: Call<List<Response>>, t: Throwable) {
                         runOnUiThread {
-                            progressBar.visibility = GONE
-                            tvNoInternet.visibility = VISIBLE
-                            ivReload.visibility = VISIBLE
+                            progressBar?.visibility = GONE
+                            tvNoInternet?.visibility = VISIBLE
+                            ivReload?.visibility = VISIBLE
                             //Log.e("data", t.message.toString())
                         }
 
@@ -66,13 +67,17 @@ class MainActivity : AppCompatActivity() {
                         response: retrofit2.Response<List<Response>>
                     ) {
                         runOnUiThread {
-                            progressBar.visibility = GONE
-                            tvNoInternet.visibility = GONE
-                            ivReload.visibility = GONE
+                            progressBar?.visibility = GONE
+                            tvNoInternet?.visibility = GONE
+                            ivReload?.visibility = GONE
                         }
-                        val l = (response.body() as ArrayList<Response>).reversed()
-                        list.addAll(l)
-                        adapter.notifyDataSetChanged()
+                        try {
+                            list.clear()
+                            val l = (response.body() as ArrayList<Response>).reversed()
+                            list.addAll(l)
+                            adapter.notifyDataSetChanged()
+                        }catch (e:Exception){}
+
                         //Log.e("data", response.body().toString())
                     }
 

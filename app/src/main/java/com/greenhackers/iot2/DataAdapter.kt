@@ -11,7 +11,7 @@ class DataAdapter(val list: ArrayList<Response>,val onclick:(vh:DataAdapter.View
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false))
     }
 
-    override fun getItemCount()= if (list.size<=7) list.size else 7
+    override fun getItemCount()= list.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val r = list[position]
         if (r.temperature<="30") {
