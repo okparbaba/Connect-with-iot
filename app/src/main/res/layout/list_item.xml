@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/liAdd"
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/ivMain"
+            android:src="@drawable/cold"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_toRightOf="@+id/ivMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Raining"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:paddingLeft="10dp" />
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_toRightOf="@+id/ivMain"
+            android:layout_below="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Windy"
+            android:layout_marginLeft="16dp"
+            android:paddingLeft="10dp" />
+        <TextView
+            android:layout_toRightOf="@+id/ivMain"
+            android:id="@+id/tvTime"
+            android:layout_below="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.30.0"
+            android:layout_marginLeft="16dp"
+            android:paddingLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/ibtEdit"
+            android:layout_width="40dp"
+            android:padding="7dp"
+            android:visibility="gone"
+            android:layout_toLeftOf="@+id/ibtDelete"
+            android:layout_height="40dp"
+            android:src="@drawable/edit"/>
+        <ImageView
+            android:id="@+id/ibtDelete"
+            android:visibility="gone"
+            android:layout_width="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_height="40dp"
+            android:padding="7dp"
+            android:src="@drawable/delete"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

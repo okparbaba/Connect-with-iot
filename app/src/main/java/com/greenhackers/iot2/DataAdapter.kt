@@ -1,0 +1,30 @@
+package com.greenhackers.iot2
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.list_item.view.*
+
+class DataAdapter(val list: ArrayList<Response>,val onclick:(vh:DataAdapter.ViewHolder,position:Int)->Unit):RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false))
+    }
+
+    override fun getItemCount()= if (list.size<=7) list.size else 7
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val r = list[position]
+        holder.title.text = "Temperature ${r.temperature}"
+        holder.des.text = "Humidity ${r.humidity}"
+        holder.time.text = r.time
+        holder.ibtDelete.setOnClickListener{onclick(holder,position)}
+    }
+
+    class ViewHolder(v:View):RecyclerView.ViewHolder(v) {
+        val title =v.tvTitle
+        val des = v.tvDesc
+        val time = v.tvTime
+        val ibtDelete = v.ibtDelete
+    }
+
+}
