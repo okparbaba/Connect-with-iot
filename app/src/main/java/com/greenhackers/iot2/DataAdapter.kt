@@ -14,6 +14,11 @@ class DataAdapter(val list: ArrayList<Response>,val onclick:(vh:DataAdapter.View
     override fun getItemCount()= if (list.size<=7) list.size else 7
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val r = list[position]
+        if (r.temperature<="30") {
+            holder.itemView.ivMain.setImageResource(R.drawable.cold)
+        }else if (r.temperature>"30" && r.temperature<"40"){
+            holder.itemView.ivMain.setImageResource(R.drawable.cold30)
+        }else holder.itemView.ivMain.setImageResource(R.drawable.cold40)
         holder.title.text = "Temperature ${r.temperature}"
         holder.des.text = "Humidity ${r.humidity}"
         holder.time.text = r.time

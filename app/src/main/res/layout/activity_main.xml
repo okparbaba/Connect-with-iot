@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
         <TextView
-            android:text="Green Hackers(Iot)"
+            android:text="Green Hackers(IOT)"
             android:textColor="@android:color/white"
             android:textAlignment="center"
             android:layout_width="match_parent"
