@@ -22,7 +22,7 @@
             android:layout_toRightOf="@+id/ivMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Raining"
+            android:text="No Temperature"
             android:textSize="17sp"
             android:textStyle="bold"
             android:layout_marginLeft="16dp"
@@ -39,6 +39,7 @@
         <TextView
             android:layout_toRightOf="@+id/ivMain"
             android:id="@+id/tvTime"
+            android:visibility="gone"
             android:layout_below="@+id/tvDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

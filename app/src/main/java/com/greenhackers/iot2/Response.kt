@@ -2,11 +2,18 @@ package com.greenhackers.iot2
 
 data class Response(
     val _id: Id,
-    val humidity: String,
-    val temperature: String,
-    val time: String
+    val humidity: Humidity,
+    val temperature: Temperature
 )
 
 data class Id(
-    val `$oid`: String
+    val `$oid`: Any
+)
+
+data class Humidity(
+    val `$numberDouble`: Any
+)
+
+data class Temperature(
+    val `$numberDouble`: Any
 )
